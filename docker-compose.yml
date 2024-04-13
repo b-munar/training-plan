@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  note_db:
+  training_db:
     image: postgres:15-bullseye
     environment:
       POSTGRES_DB: postgres
@@ -11,14 +11,14 @@ services:
     ports:
       - 6500:5432
     networks:
-      - note_net
+      - training_net
     deploy:  
       resources:
         limits:
           cpus: '0.2'
           memory: 300M
 
-  note:
+  training:
     build: .
     environment:
       GUNICORN: false
@@ -27,17 +27,17 @@ services:
     ports:
       - 6550:80
     networks:
-      - note_net
+      - training_net
     deploy:
       resources:
         limits:
           cpus: '0.2'
           memory: 300M
     depends_on:
-      note_db:
+      training_db:
         condition: service_started
 
 networks:
-  note_net:
+  training_net:
     driver: bridge
-    name: note_net
+    name: training_net
