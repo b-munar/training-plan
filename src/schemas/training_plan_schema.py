@@ -1,22 +1,25 @@
 from marshmallow import Schema, fields
 
-
-class TraningDaySerializedSchema(Schema):
-    id= fields.UUID()
-    day = fields.String()
-    exercises = fields.List(fields.Nested())
-
-class TraniningPlanSerializeSchema(Schema):
+class ExerciseDeserializedSchema(Schema):
     id = fields.UUID()
-    trainer = fields.String()
-    days_plan= fields.List(fields.Nested(TraningDaySerializedSchema))
-    
+
 class TraningDayDeserializedSchema(Schema):
     day = fields.String()
-    exercises = fields.List(fields.String())
+    exercises = fields.List(fields.Nested(ExerciseDeserializedSchema))
     
-class TrainingPlanDeserializeSchema(Schema):
+class TrainingPlanDeserializedSchema(Schema):
+    trainer = fields.UUID()
+    user = fields.UUID()
+    days= fields.List(fields.Nested(TraningDayDeserializedSchema))
+    
+class ExerciseSerializedSchema(Schema):
     id = fields.UUID()
-    name = fields.String()
-    trainer = fields.String()
-    days_plan= fields.List(fields.Nested(TraningDayDeserializedSchema))
+
+class TraningDaySerializedSchema(Schema):
+    day = fields.String()
+    exercises = fields.List(fields.Nested(ExerciseDeserializedSchema))
+    
+class TrainingPlanSerializedSchema(Schema):
+    trainer = fields.UUID()
+    user = fields.UUID()
+    days= fields.List(fields.Nested(TraningDayDeserializedSchema))
