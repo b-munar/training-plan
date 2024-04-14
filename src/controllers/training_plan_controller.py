@@ -49,9 +49,12 @@ class TrainingPlanController(Resource):
     
     def get(self, **kwargs):
         note_schema = TrainingPlanSerializedSchema()
-
         session = Session()
-        query = session.query(TraningPlanModel).filter(TraningPlanModel.trainer==kwargs["user"]["id"])
+        if kwargs["user"]["role"] == 2:
+            user = TraningPlanModel.trainer==kwargs["user"]["id"]
+        else:
+            user = TraningPlanModel.user==kwargs["user"]["id"]
+        query = session.query(TraningPlanModel).filter(user)
         session.close()
         
         notes = [note_schema.dump(note) for note in query]
