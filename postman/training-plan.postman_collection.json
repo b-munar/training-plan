@@ -22,7 +22,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:6550/exercise",
+					"raw": "localhost:6550/training-plan/exercise",
 					"host": [
 						"localhost"
 					],
@@ -59,7 +59,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:6550/exercise",
+					"raw": "localhost:6550/training-plan/exercise",
 					"host": [
 						"localhost"
 					],
