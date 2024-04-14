@@ -6,7 +6,7 @@ from functools import wraps
 def mock_authorization(func):
     @wraps(func)
     def decorated(*args, **kwargs):
-            kwargs["user"] = {"id" : "9027aff6-545e-4a1c-bbf7-9c09f6ae595c"}
+            kwargs["user"] = {"id" : "9027aff6-545e-4a1c-bbf7-9c09f6ae595c", "role":2}
             return func(*args, **kwargs)
     return decorated
 

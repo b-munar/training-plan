@@ -48,7 +48,7 @@ class TrainingPlanController(Resource):
         return training_plan_created_dump, 201
     
     def get(self, **kwargs):
-        note_schema = TrainingPlanSerializedSchema()
+        training_plan_schema = TrainingPlanSerializedSchema()
         session = Session()
         if kwargs["user"]["role"] == 2:
             user = TraningPlanModel.trainer==kwargs["user"]["id"]
@@ -57,6 +57,6 @@ class TrainingPlanController(Resource):
         query = session.query(TraningPlanModel).filter(user)
         session.close()
         
-        notes = [note_schema.dump(note) for note in query]
-        return notes, 200
+        plans = [training_plan_schema.dump(plan) for plan in query]
+        return {"plans":plans}, 200
 
