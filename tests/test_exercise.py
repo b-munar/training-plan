@@ -6,7 +6,7 @@ from functools import wraps
 def mock_authorization(func):
     @wraps(func)
     def decorated(*args, **kwargs):
-            kwargs["user"] = {"id" : "9027aff6-545e-4a1c-bbf7-9c09f6ae595c"}
+            kwargs["user"] = {"id" : "9027aff6-545e-4a1c-bbf7-9c09f6ae595c", "role":2}
             return func(*args, **kwargs)
     return decorated
 
@@ -24,12 +24,12 @@ def client():
             yield client
 
 def test_request_ping(client):
-    response = client.get("/exercise/ping")
+    response = client.get("/training-plan/ping")
     assert response.status_code == 200
     assert b"pong" in response.data
 
 def test_request_post(client):
-    url = "/exercise"
+    url = "/training-plan/exercise"
     headers = {
         "Content-Type": "application/json"
     }
@@ -45,7 +45,7 @@ def test_request_post(client):
 
 
 def test_request_get(client):
-    url = "/exercise"
+    url = "/training-plan/exercise"
     headers = {
         "Content-Type": "application/json"
     }

@@ -14,7 +14,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyOWEzYWQ3OC02ZDNjLTQ2ZTMtOWM0Mi04NTdjYTNlYzUyMjAiLCJpYXQiOjE3MTMwMzA3NzIsImV4cCI6MTcxMzA0MTU3Mn0.ZRpdFqKPXYnZnf5oNT-PhIF1rFeJSQlbWYgzHRxLKjk",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyOGEzYWQ3Ny03ZDNjLTQ3ZTMtOWM0Mi04NThjYTNlYzUyMjIiLCJpYXQiOjE3MTMwNjU4MjIsImV4cCI6MTcxMzA3NjYyMiwicm9sZSI6Mn0.ZLXG0zCDVN9lMyB_lF4sUgO_gb5genzxEyTKHczP6Kk",
 							"type": "string"
 						}
 					]
@@ -22,7 +22,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:6550/exercise",
+					"raw": "localhost:6550/training-plan/exercise",
 					"host": [
 						"localhost"
 					],
@@ -42,7 +42,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyOWEzYWQ3OC02ZDNjLTQ2ZTMtOWM0Mi04NTdjYTNlYzUyMjAiLCJpYXQiOjE3MTMwMzA3NzIsImV4cCI6MTcxMzA0MTU3Mn0.ZRpdFqKPXYnZnf5oNT-PhIF1rFeJSQlbWYgzHRxLKjk",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyOGEzYWQ3Ny03ZDNjLTQ3ZTMtOWM0Mi04NThjYTNlYzUyMjIiLCJpYXQiOjE3MTMwNjU4MjIsImV4cCI6MTcxMzA3NjYyMiwicm9sZSI6Mn0.ZLXG0zCDVN9lMyB_lF4sUgO_gb5genzxEyTKHczP6Kk",
 							"type": "string"
 						}
 					]
@@ -51,7 +51,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"exercise1\",\n    \"description\": \"description 1\",\n    \"timing_minutes\": 2.5,\n    \"image_url\": \"test_image\",\n    \"muscular_group\": \"tren inferior\"\n}",
+					"raw": "{\n    \"name\": \"exercise2\",\n    \"description\": \"description 1\",\n    \"timing_minutes\": 2.5,\n    \"image_url\": \"test_image\",\n    \"muscular_group\": \"tren inferior\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -59,13 +59,78 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:6550/exercise",
+					"raw": "localhost:6550/training-plan/exercise",
 					"host": [
 						"localhost"
 					],
 					"port": "6550",
 					"path": [
 						"exercise"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Training plan",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyOGEzYWQ3Ny03ZDNjLTQ3ZTMtOWM0Mi04NThjYTNlYzUyMjIiLCJpYXQiOjE3MTMwNjU4MjIsImV4cCI6MTcxMzA3NjYyMiwicm9sZSI6Mn0.ZLXG0zCDVN9lMyB_lF4sUgO_gb5genzxEyTKHczP6Kk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"user\":\"29a3ad78-6d3c-46e3-9c42-857ca3ec5220\",\n        \"days\": [\n            {\n                \"day\": \"Monday\",\n                \"exercises\": [\n                    {\n                        \"id\": \"a20ba164-1b9d-486e-afd2-5ee5ec4bc06a\"\n                    }\n                ]\n            },\n            {\n                \"day\": \"Wednesday\",\n                \"exercises\": [\n                    {\n                        \"id\": \"aa8ca14e-57a8-44d6-8ebe-421013c47e07\"\n                    },\n                    {\n                        \"id\": \"58bcce19-110f-4689-b9dd-33b8e66ac49b\"\n                    }\n                ]\n            }\n        ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:6550/training-plan",
+					"host": [
+						"localhost"
+					],
+					"port": "6550",
+					"path": [
+						"training-plan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Training plan",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyOGEzYWQ3Ny03ZDNjLTQ3ZTMtOWM0Mi04NThjYTNlYzUyMjIiLCJpYXQiOjE3MTMwNTkyODUsImV4cCI6MTcxMzA3MDA4NSwicm9sZSI6Mn0.su3fBBPuXhP9k1u0awL9kdr80d8kDaERR3fYtXbAhWI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:6550/training-plan",
+					"host": [
+						"localhost"
+					],
+					"port": "6550",
+					"path": [
+						"training-plan"
 					]
 				}
 			},

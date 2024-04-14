@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: training-plan
+  labels:
+    app: training-plan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: training-plan
+  template:
+    metadata:
+      labels:
+        app: training-plan
+    spec:
+      containers:
+        - name: training-plan
+          image: my-app-image
+          resources:
+            limits:
+              memory: "100Mi"
+              cpu: "0.2"
+            requests:
+              memory: "100Mi"
+              cpu: "0.2"
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
+
+          env:
+            - name: "AUTH_HOST"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: AUTH_HOST
+            - name: "AUTH_PATH_AUTH"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: AUTH_PATH_AUTH
+            - name: "AUTH_PORT"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: AUTH_PORT
+
+            - name: "TRAINING_PLAN_DB_USER"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: TRAINING_PLAN_DB_USER
+            - name: "TRAINING_PLAN_DB_HOST"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: TRAINING_PLAN_DB_HOST
+            - name: "TRAINING_PLAN_DB_NAME"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: TRAINING_PLAN_DB_NAME
+            - name: "TRAINING_PLAN_DB_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: TRAINING_PLAN_DB_PASSWORD
+            - name: "TRAINING_PLAN_DB_PORT"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: TRAINING_PLAN_DB_PORT
+
+
+
+---
+
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: training-plan-config
+spec:
+  healthCheck:
+    checkIntervalSec: 30
+    port: 80
+    type: HTTP
+    requestPath: /training-plan/ping
