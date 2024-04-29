@@ -24,12 +24,12 @@ def client():
             yield client
 
 def test_request_ping(client):
-    response = client.get("/exercise/ping")
+    response = client.get("/training-plan/ping")
     assert response.status_code == 200
     assert b"pong" in response.data
 
 def test_request_post(client):
-    url = "/exercise"
+    url = "/training-plan/exercise"
     headers = {
         "Content-Type": "application/json"
     }
@@ -45,7 +45,7 @@ def test_request_post(client):
 
 
 def test_request_get(client):
-    url = "/exercise"
+    url = "/training-plan/exercise"
     headers = {
         "Content-Type": "application/json"
     }

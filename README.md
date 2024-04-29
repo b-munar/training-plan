@@ -26,7 +26,7 @@ Retorna ejercicios.
 </tr>
 <tr>
 <td> Ruta </td>
-<td> <strong>localhost:6550/exercise</strong> </td>
+<td> <strong>localhost:6550/training-plan/exercise</strong> </td>
 </tr>
 <tr>
 <td> Parámetros </td>
@@ -85,7 +85,7 @@ Permite realizar creación de un ejercicio.
 </tr>
 <tr>
 <td> Ruta </td>
-<td> <strong>localhost:6550/exercise</strong> </td>
+<td> <strong>localhost:6550/training-plan/exercise</strong> </td>
 </tr>
 <tr>
 <td> Parámetros </td>
