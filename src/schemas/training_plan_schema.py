@@ -2,6 +2,7 @@ from marshmallow import Schema, fields
 
 class ExerciseDeserializedSchema(Schema):
     id = fields.UUID()
+    exercise_id = fields.UUID()
 
 class TraningDayDeserializedSchema(Schema):
     day = fields.String()

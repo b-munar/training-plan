@@ -39,6 +39,7 @@ class TrainingPlanController(Resource):
             session.add(new_day)
             session.flush()
             for exercises in day["exercises"]:
+                print(exercises)
                 new_exercise = TrainingDayExerciseModel(exercise_id=exercises["id"], traning_day_id= new_day.id) 
                 session.add(new_exercise)   
         session.commit()
