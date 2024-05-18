@@ -49,14 +49,14 @@ def test_request_get(client):
     headers = {
         "Content-Type": "application/json"
     }
-    data = {
-    "name": "exercise1",
-    "description": "description 1",
-    "timing_minutes": 2.5,
-    "image_url": "test_image",
-    "muscular_group": "tren inferior"
-    }
-    client.post(url, data=json.dumps(data), headers=headers)
-    response = client.get("/exercise")
+    # data = {
+    # "name": "exercise1",
+    # "description": "description 1",
+    # "timing_minutes": 2.5,
+    # "image_url": "test_image",
+    # "muscular_group": "tren inferior"
+    # }
+    # client.post(url, data=json.dumps(data), headers=headers)
+    response = client.get(url, headers=headers)
     assert response.status_code == 200
     assert b"exercises" in response.data
